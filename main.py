@@ -1,12 +1,13 @@
 import pandas as pd
 import requests
 from bs4 import BeautifulSoup
-import re # library for regex
+import re
 import time
 from tqdm import tqdm
 import os
 import concurrent.futures
 import logging
+import shutil
 
 
 # ---initializing functions---
@@ -146,16 +147,16 @@ if __name__ == "__main__":
     tqdm.pandas() #register to tqdm
 
     input_path = "/Users/qaulanmaruf/Desktop/news_enrichment/input"
-    folder = os.listdir(input_path)
+    input_folder = os.listdir(input_path)
     
     df_list = []
-    for file in folder:
+    for file in input_folder:
         if file.endswith(".csv"):
             df_list.append(pd.read_csv(os.path.join(input_path, file)))
     
     df = pd.concat(df_list, ignore_index=True)
     
-    # run each processing function concurrently
+    # use a ThreadPoolExecutor to run each processing function concurrently
     with concurrent.futures.ThreadPoolExecutor() as executor:
         print("\nEnriching news articles...\n")
         future_content = executor.submit(enrich_content, df)
@@ -172,10 +173,16 @@ if __name__ == "__main__":
         df['journalist_name'] = future_journalist.result()
     
     # save the updated df
-    output_path = "/Users/qaulanmaruf/Desktop/news_enrichment/output/"
+    output_path = "/Users/qaulanmaruf/Desktop/news_enrichment/output"
     timestamp = time.strftime("%d-%m-%Y-%H.%M.%S", time.localtime(time.time()))
-    df_output = f"{output_path}_{timestamp}.csv"
+    df_output = f"{output_path}/enriched_data_{timestamp}.csv"
     df.to_csv(df_output, index=False)
+
+    #move the file in input folder to processed folder
+    processed_path = "/Users/qaulanmaruf/Desktop/news_enrichment/processed"
+    for file in input_folder:
+        if file.endswith(".csv"):
+            shutil.move(f"{input_path}/{file}", processed_path)
 
     #statistics on elapsed time
     elapsed = time.time() - time_start
