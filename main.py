@@ -174,8 +174,8 @@ if __name__ == "__main__":
     # save the updated df
     output_path = "/Users/qaulanmaruf/Desktop/news_enrichment/output/"
     timestamp = time.strftime("%d-%m-%Y-%H.%M.%S", time.localtime(time.time()))
-    df_output_name = f"{output_path}_{timestamp}.csv"
-    df.to_csv(output_path, index=False)
+    df_output = f"{output_path}_{timestamp}.csv"
+    df.to_csv(df_output, index=False)
 
     #statistics on elapsed time
     elapsed = time.time() - time_start
