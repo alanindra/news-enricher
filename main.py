@@ -180,9 +180,15 @@ if __name__ == "__main__":
 
     #move the file in input folder to processed folder
     processed_path = "/Users/qaulanmaruf/Desktop/news_enrichment/processed"
-    for file in input_folder:
-        if file.endswith(".csv"):
-            shutil.move(f"{input_path}/{file}", processed_path)
+    for file in os.listdir(input_path):
+        if file.endswith(".csv") and not file.startswith("."):
+            src = os.path.join(input_path, file)
+            dst = os.path.join(processed_path, file)
+            
+            if os.path.exists(dst):
+                os.remove(dst)
+
+            shutil.move(src, dst) 
 
     #statistics on elapsed time
     elapsed = time.time() - time_start
