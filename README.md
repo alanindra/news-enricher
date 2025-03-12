@@ -1,6 +1,4 @@
 # news-enrichment
-Crawl to news links to retrieve news' title, content, date published, and journalist name. SOON: Optionally run sentiment analysis through Google NLP API (you must sign up for the service).
+This program takes in csv file as an input, crawls to list of news article links, and outputs csv with information of the title, content, date published, journalist name, and proper person names of a news article. This program require key to Google NLP API.
 
-This program takes in csv file as an input and outputs csv with informations of title, content, date published, and journalist name from a given news article link.
-
-Ensure that news link contains protocol information (https:// or http://) otherwise it will retrieve an error.
+Ensure that the news article link contains protocol information (https:// or http://) otherwise it will retrieve an error.
