@@ -1,6 +1,16 @@
 # news-enrichment
-This program takes in csv file as an input, crawls to list of news article links, and outputs csv file with information of the title, content, date published, and journalist name.
 
-The program is intended to automate media monitoring process. The whole program takes 4 minutes to enrich the data of 100 links of news articles. The main library used for crawling in this program is BeautifulSoup. Therefore it is best suited for static websites. It is built to crawl Indonesian and English news article.
+This program automates the enrichment of news article data. It accepts a CSV file containing a list of article URLs, crawls each link, and outputs a new CSV file with the following information:
 
-Note: ensure that the news article link contains protocol information (https:// or http://) otherwise it will retrieve an error.
+- Article title  
+- Full content  
+- Publication date  
+- Journalist name (if available)
+
+Designed to support media monitoring workflows, the tool can process and enrich 100 news article links in approximately 4 minutes.
+
+The program uses `BeautifulSoup` as the core crawling library, making it best suited for **static websites**. It is compatible with both **Indonesian** and **English** news sources.
+
+> [!NOTE] 
+> Make sure that each news article URL in the input file includes the full protocol (`https://` or `http://`).  
+> Missing protocol information will result in a crawling error.
