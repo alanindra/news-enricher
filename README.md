@@ -1,4 +1,4 @@
-# news-enrichment
+# news-enricher
 
 This program automates the enrichment of news article data. It accepts a CSV file containing a list of article URLs, crawls each link, and outputs a new CSV file with the following information:
 
