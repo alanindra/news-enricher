@@ -9,7 +9,7 @@ This program automates the enrichment of news article data. It accepts a CSV fil
 
 Designed to support media monitoring workflows, the tool can process and enrich 100 news article links in approximately 4 minutes.
 
-The program uses `BeautifulSoup` as the core crawling library, making it best suited for **static websites**. It is compatible with both **Indonesian** and **English** news sources.
+The program uses `BeautifulSoup` as the core crawling library, making it best suited for static websites.
 
 > [!NOTE] 
 > Make sure that each news article URL in the input file includes the full protocol (`https://` or `http://`).  
